@@ -1,6 +1,7 @@
 from pdf2docx import Converter
 name = '0'         #name of file PDF
-pdf_file = "C:/Users/pa_denisov/Downloads/0/" + name + ".pdf"
+path = "C:/Users/pa_denisov/Downloads/0/"
+pdf_file = path + name + ".pdf"
 
 cv = Converter(pdf_file)
 tables = cv.extract_tables()
