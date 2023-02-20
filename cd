@@ -1,0 +1,40 @@
+from pdf2docx import Converter
+name = '0'
+pdf_file = "C:/Users/pa_denisov/Downloads/0/" + name + ".pdf"
+
+cv = Converter(pdf_file)
+tables = cv.extract_tables()
+cv.close()
+
+D_all = pd.DataFrame()
+gens = []
+for i in table[1:]:
+    gens.append(i[1])
+
+
+for table in tables:
+
+    D = {}
+    k,v = [],[]
+    for i in table[1::]:
+        k.append(i[1])
+        v.append(i[2])
+    #print(k,v)
+    for i in range(len(v)):
+        if  "ОБНАРУЖЕНО" in v[i] and v[i] != "0":
+            #print(v[i])
+            V = v[i].split(' ')[1]
+            #print(V)
+            V1 = V.split('(')[1]
+            #print(V1)
+            v[i] = V1
+        elif v[i] == "не обнаружено":
+            v[i] = ' '
+            
+    for i in range(len(v)):
+        D[k[i]] = v[i]
+        D = pd.DataFrame(data = D, index=[1])
+        #print(D)
+    D_all = pd.concat([D_all, D], axis = 0)
+D_all.to_excel(path + name + '_final'+'.xlsx')
+D_all
