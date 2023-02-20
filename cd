@@ -1,5 +1,5 @@
 from pdf2docx import Converter
-name = '0'
+name = '0'         #name of file PDF
 pdf_file = "C:/Users/pa_denisov/Downloads/0/" + name + ".pdf"
 
 cv = Converter(pdf_file)
